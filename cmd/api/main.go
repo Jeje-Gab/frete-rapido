@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"frete-rapido/internal/quote/delivery/http" // Renomeie para o nome real do seu pacote de handlers!
+	"frete-rapido/internal/quote/delivery/http"
 	"frete-rapido/internal/quote/freterapido"
 	"frete-rapido/internal/quote/repository"
 	"frete-rapido/internal/quote/usecase"
