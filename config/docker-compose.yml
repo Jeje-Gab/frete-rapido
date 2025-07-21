@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypass
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+
+  api:
+    build: .
+    command: [ "./dist/yourbinary" ]
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./env/.env.development
+    depends_on:
+      - db
