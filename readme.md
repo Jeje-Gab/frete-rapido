@@ -1,3 +1,95 @@
+### ------------------------------------ Testes:
+
+# 🚚 Desafio Frete Rápido - Backend com Go, Docker e PostgreSQL
+
+Este projeto consiste em uma API RESTful desenvolvida em Go que simula cotações de frete (mockadas), armazena os dados em PostgreSQL, e oferece um endpoint para consulta de métricas. Abaixo está o passo a passo completo para executar o ambiente e realizar os testes localmente.
+
+---
+
+## ✅ 1. Pré-requisitos
+
+Certifique-se de ter os seguintes componentes instalados:
+
+- **Go** versão **1.24** ou superior
+- **Docker** e **Docker Compose**
+- Nenhum container PostgreSQL ativo usando a porta `5432`
+
+### Verificações rápidas:
+
+```bash
+go version
+docker --version
+docker-compose --version
+docker ps
+```
+## 🧹 2. Limpeza de ambiente (opcional)
+
+```bash
+docker-compose down -v
+docker volume prune
+```
+
+## 🗂️ 3. Estrutura esperada do projeto
+```bash
+frete-rapido/
+├── cmd/api/main.go
+├── config/docker-compose.yml
+├── Dockerfile
+├── env/.env.development
+├── migrations/01_up.sql
+├── test_post_quote.sh
+├── test_get_metrics.sh
+```
+
+
+## 4. Arquivo de variáveis de ambiente .env
+no arquivo /env/.env.development ajustar as informações sensiveis
+de acordo com o que foi passado via documentação do desafio "desafio-back-end-2.html",
+substituindo as informaçôes em "XXXX" pelas reais!
+```bash
+FR_TOKEN=1d52XXXXXXXXXXXXXXXXXXXXXXXXXXX
+FR_ENDPOINT=https://sp.freterapido.com/api/v3/quote/simulate
+FR_CNPJ=25438XXXXXXXXX
+FR_PLATFORM_CODE=5AKXXXXXX
+FR_DISPATCHER_ZIP=29161376
+```
+
+
+## 🐳 5. Build e execução do projeto
+
+Entre na pasta de configuração do projeto:
+```bash
+cd config
+```
+Execute o build completo com:
+```bash
+docker-compose up --build
+```
+Ao aparecer no terminal:
+🚀 Servidor rodando em http://localhost:8080
+
+o mesmo estará pronto para uso e teste
+
+
+🧪 6. Testes com curl
+Permitir execução dos scripts de teste, no diretorio raiz do projeto:
+```bash
+chmod +x test_post_quote.sh test_get_metrics.sh
+```
+e para executar os teste:
+```bash
+./test_post_quote.sh
+./test_get_metrics.sh
+```
+
+OBS: sendo possivel utilizar uma ferramenta de testes como bruno ou
+postman!
+apenas direcionar as rotas para "http://localhost:8080/rota"
+
+
+
+### Mais detalhes sobre a aplicação desenvolvida
+
 # Desafio Frete Rápido - Backend em Golang
 
 ## Descrição do Projeto
@@ -69,84 +161,7 @@ A tabela `quotes` armazena cada transportadora retornada em uma cotação, sempr
 }
 
 
-### ------------------------------------ Testes:
 
-# 🚚 Desafio Frete Rápido - Backend com Go, Docker e PostgreSQL
-
-Este projeto consiste em uma API RESTful desenvolvida em Go que simula cotações de frete (mockadas), armazena os dados em PostgreSQL, e oferece um endpoint para consulta de métricas. Abaixo está o passo a passo completo para executar o ambiente e realizar os testes localmente em um sistema Linux.
-
----
-
-## ✅ 1. Pré-requisitos
-
-Certifique-se de ter os seguintes componentes instalados:
-
-- **Go** versão **1.24** ou superior
-- **Docker** e **Docker Compose**
-- Nenhum container PostgreSQL ativo usando a porta `5432`
-
-### Verificações rápidas:
-
-```bash
-go version
-docker --version
-docker-compose --version
-docker ps
-
-## 🧹 2. Limpeza de ambiente (opcional)
-
-docker-compose down -v
-docker volume prune
-
-## 🗂️ 3. Estrutura esperada do projeto
-
-frete-rapido/
-├── cmd/api/main.go
-├── config/docker-compose.yml
-├── Dockerfile
-├── env/.env.development
-├── migrations/01_up.sql
-├── test_post_quote.sh
-├── test_get_metrics.sh
-
-
-
-## 4. Arquivo de variáveis de ambiente .env
-no arquivo /env/.env.development ajustar as informações sensiveis
-de acordo com o que foi passado via documentação do desafio "desafio-back-end-2.html",
-substituindo as informaçôes em "XXXX" pelas reais!
-
-FR_TOKEN=1d52XXXXXXXXXXXXXXXXXXXXXXXXXXX
-FR_ENDPOINT=https://sp.freterapido.com/api/v3/quote/simulate
-FR_CNPJ=25438XXXXXXXXX
-FR_PLATFORM_CODE=5AKXXXXXX
-FR_DISPATCHER_ZIP=29161376
-
-
-
-## 🐳 5. Build e execução do projeto
-
-Entre na pasta de configuração do projeto:
-cd config
-
-Execute o build completo com:
-docker-compose up --build
-
-Ao aparecer no terminal:
-🚀 Servidor rodando em http://localhost:8080
-
-o mesmo estará pronto para uso e teste
-
-
-🧪 6. Testes com curl
-Permitir execução dos scripts de teste, no diretorio raiz do projeto:
-
-chmod +x test_post_quote.sh test_get_metrics.sh
-
-e para executar os teste:
-
-./test_post_quote.sh
-./test_get_metrics.sh
 
 
 
