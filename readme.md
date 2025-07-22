@@ -10,7 +10,6 @@ Este projeto consiste em uma API RESTful desenvolvida em Go que simula cotaçõe
 
 Certifique-se de ter os seguintes componentes instalados:
 
-- **Go** versão **1.24** ou superior
 - **Docker** e **Docker Compose**
 - Nenhum container PostgreSQL ativo usando a porta `5432`
 
